@@ -3,9 +3,9 @@ from redditharbor.dock.pipeline import collect
 
 # Configure authentication
 SUPABASE_URL = "https://sucbyycpcdlnxivgtetc.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN1Y2J5eWNwY2Rsbnhpdmd0ZXRjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxMjU0MjEyOCwiZXhwIjoyMDI4MTE4MTI4fQ.d1SiMd_UIeT7xPX7A2f2GnO3mFefhzwtyuXec9o0Jv4"  # Use "service_role/secret" key, not "anon/public"
+SUPABASE_KEY = "************"
 REDDIT_PUBLIC = "WmY540g3fh4SmO27zMjsvA"
-REDDIT_SECRET = "mO4sKlnXUeVF0-Ue6ooSon2is1iLVg"
+REDDIT_SECRET = "***************"
 REDDIT_USER_AGENT = "<institution:reddit-research (u/u/pranav_vizrotu)>"  # Format: <institution:project-name (u/reddit-username)>
 # e.g. REDDIT_USER_AGENT = "LondonSchoolofEconomics:ICWSM-tutorial (u/reddit-username)"
 
