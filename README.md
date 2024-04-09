@@ -4,10 +4,10 @@
    
 Progress Of the Project:
 
-- Did create a developer Reddit to access its API to extract the data
-- Created a supabase account to write the SQL code related to the project
+Did come across the reddit scrapper tool which acrapes the data of a subreddit by using the url of the post of the reddit
 
-  Found a GitHub repository which deals with the extraction of Reddit data
-  The Reddit link is https://github.com/socius-org/RedditHarbor.git
+In this the extraction of number of replies to the comments of the post can be modified
 
-  From here have taken the code and will now modify the code according to the project to collect data
+The link of the reddit data tool is https://github.com/NFeruch/reddit2text.git
+
+This helps to extract the data from the reddit to a text file
