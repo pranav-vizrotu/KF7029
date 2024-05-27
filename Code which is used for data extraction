@@ -1,0 +1,44 @@
+import re
+import pandas as pd
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize  # Import word_tokenize explicitly
+
+# Download NLTK stopwords if not already downloaded
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
+
+# Prepare data
+trump = pd.read_csv('.csv', encoding='latin-1')
+
+# Drop rows with NaN values in the 'text' column
+trump = trump.dropna(subset=['text'])
+
+# Preprocess text data and remove stop words
+stop_words = set(stopwords.words('english'))  # Get English stop words
+trump['text'] = trump['text'].apply(lambda x: re.sub(r"http\S+", "", x).lower())  # Remove URLs and convert to lowercase
+trump['text'] = trump['text'].apply(lambda x: " ".join(filter(lambda y: y[0]!="@", x.split())))  # Remove Twitter handles
+trump['text'] = trump['text'].apply(lambda x: " ".join(re.sub("[^a-zA-Z]+", " ", x).split()))  # Remove non-alphabetic characters
+trump['text'] = trump['text'].apply(lambda x: ' '.join([word for word in word_tokenize(x) if word.lower() not in stop_words]))  # Remove stop words
+
+# Filter out retweets and empty tweets
+trump = trump.loc[(trump['isRetweet'] == "f") & (trump['text'] != ""), :]
+
+# Convert timestamps to datetime objects with the correct format
+trump['date'] = pd.to_datetime(trump['date'], format="%d-%m-%Y %H:%M")
+
+# Extract timestamps and tweets
+timestamps = trump['date'].to_list()
+tweets = trump['text'].to_list()
+
+from bertopic import BERTopic
+
+topic_model = BERTopic(verbose=True)
+topics, probs = topic_model.fit_transform(tweets)
+
+topics_over_time = topic_model.topics_over_time(tweets, timestamps,
+                                                global_tuning=True, evolution_tuning=True, nr_bins=5)
+
+data_viz = topic_model.visualize_topics_over_time(topics_over_time, top_n_topics=5)
+data_viz.show()
+data_viz.write_html('testing.html')
