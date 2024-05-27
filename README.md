@@ -16,4 +16,4 @@ This helps to extract the data from the reddit to a text file
 For the topic modelling we did use BERTopic modelling and for this we have taken reference from this code :
 https://maartengr.github.io/BERTopic/getting_started/topicsovertime/topicsovertime.html
 
-From the above code we did modify the code so that it would be suitable for the scope of this project
+From the above code we did modify the code so that it would be suitable for the scope of this project.
